@@ -13,12 +13,13 @@ public class App {
             "vingt", "vingt et un", "vingt-deux", "vingt-trois", "vingt-quatre", "vingt-cinq", "vingt-six",
             "vingt-sept", "vingt-huit", "vingt-neuf", "trente"};
 
-    static String[] germanNumbers = {"eins", "zwei", "drei", "vier", "funf", "sechs", "sieben", "acht", "neun",
+    static String[] germanNumbers = {"einz", "zwei", "drei", "vier", "funf", "sechs", "sieben", "acht", "neun",
             "zehn", "elf", "zwolf", "dreizehn", "vierzehn", "funfzehn", "sechzehn", "siebzehn", "achtzehn",
             "neunzehn", "zwanzig", "einundzwanzig", "zweiundzwanzig", "dreiundzwanzig", "vierundzwanzig",
             "fünfundzwanzig", "sechsundzwanzig", "siebenundzwanzig", "achtundzwanzig", "neunundzwanzig", "dreiβig"};
 
     public static void main(String[] args) {
+        Converter conv = new Converter();
         String userNumber = "";
         int translatedNumber = -1;
         String chosenLanguage = "";
@@ -44,17 +45,23 @@ public class App {
         } catch (Exception e) {
             System.out.println("Error in picking language: " + e);
         }
-
-        try{
-            if (chosenLanguage.equalsIgnoreCase("French")) {
-                System.out.println(translatedNumber + " translated to french: " + frenchNumbers[translatedNumber -1]);
-            }
-            if (chosenLanguage.equalsIgnoreCase("German")) {
-                System.out.println(translatedNumber + " translated to german: " + germanNumbers[translatedNumber -1]);
-            }
-        }catch (Exception e){
-            System.out.println("Error in translation: " + e);
+        if(conv.convert(translatedNumber,chosenLanguage) != null){
+            System.out.println("translated to: " + conv.convert(translatedNumber,chosenLanguage));
         }
+        else{
+            System.out.println("Invalid input");
+        }
+
+//        try{
+//            if (chosenLanguage.equalsIgnoreCase("French")) {
+//                System.out.println(translatedNumber + " translated to french: " + frenchNumbers[translatedNumber -1]);
+//            }
+//            if (chosenLanguage.equalsIgnoreCase("German")) {
+//                System.out.println(translatedNumber + " translated to german: " + germanNumbers[translatedNumber -1]);
+//            }
+//        }catch (Exception e){
+//            System.out.println("Error in translation: " + e);
+//        }
 
     }
 
